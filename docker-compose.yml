@@ -1,0 +1,35 @@
+version: '3.7'
+
+services:
+  zipkin:
+    container_name: zipkin
+    image: openzipkin/zipkin
+    ports:
+      - "9411:9411"
+    networks:
+      - zipkin-network
+
+  postgres:
+    image: postgres:15.3
+    container_name: users_db
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=root
+      - POSTGRES_DB=users_db
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+      - ./sql-scripts/created_user_db.sql:/docker-entrypoint-initdb.d/created_user_db.sql
+    networks:
+      - postgres-network
+    restart: always
+
+networks:
+  zipkin-network:
+    driver: bridge
+  postgres-network:
+    driver: bridge
+
+volumes:
+  pgdata:
