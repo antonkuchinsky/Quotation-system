@@ -1,9 +1,8 @@
 create table if not exists users
 (
-    id           uuid,
-    username    varchar (30) not null unique,
-    email       varchar(50) not null unique ,
-    password    varchar (80) not null,
-    date_create timestamptz,
-    primary key (id)
+    id           uuid primary key,
+    content    varchar (500) not null,
+    creation_date     timestamptz,
+    update_date timestamptz,
+    username varchar(30)
     );

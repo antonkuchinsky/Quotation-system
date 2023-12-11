@@ -1,0 +1,1 @@
+create database quotes_db;
