@@ -32,6 +32,11 @@ public class QuoteServiceImpl implements QuoteService {
     }
 
     @Override
+    public QuoteDto getRandomQuote() {
+        return quoteMapperDto.apply(quoteRepository.findRandomQuote());
+    }
+
+    @Override
     public QuoteDto getQuoteById(UUID id) {
         return quoteMapperDto.apply(quoteRepository.findById(id).
                 orElseThrow(()->new InvalidDataException("Quote with this id not found",

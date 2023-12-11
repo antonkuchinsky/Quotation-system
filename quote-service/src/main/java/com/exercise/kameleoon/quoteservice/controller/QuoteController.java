@@ -26,6 +26,12 @@ public class QuoteController {
         return quoteService.getQuoteById(id);
     }
 
+    @GetMapping("/random")
+    @ResponseStatus(HttpStatus.OK)
+    public QuoteDto getRandomQuote() {
+        return quoteService.getRandomQuote();
+    }
+
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
     public Page<Quote> getAllQuotes(@RequestParam(value = "page", defaultValue = "0") int page,

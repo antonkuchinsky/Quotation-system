@@ -12,6 +12,7 @@ import java.util.UUID;
 
 public interface QuoteService {
     Page<Quote> getAllQuotes(Pageable pageable);
+    QuoteDto getRandomQuote();
     QuoteDto getQuoteById(UUID id);
     Quote addQuote(QuoteCreateDto quoteCreateDto);
     Quote updateQuote(QuoteUpdateDto quoteUpdateDto);
