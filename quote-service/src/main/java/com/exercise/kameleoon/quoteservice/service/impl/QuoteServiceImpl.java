@@ -49,6 +49,7 @@ public class QuoteServiceImpl implements QuoteService {
     public Quote updateQuote(QuoteUpdateDto quoteUpdateDto) {
         var quote=quoteRepository.findById(quoteUpdateDto.quoteId());
         quote.get().setUpdateDate(LocalDateTime.now());
+        quote.get().setContent(quoteUpdateDto.content());
         return quote.map(quoteRepository::save)
                 .orElseThrow(() ->
                         new InvalidDataException("Quote with this id not found", "A quote with this id wasn't found"));

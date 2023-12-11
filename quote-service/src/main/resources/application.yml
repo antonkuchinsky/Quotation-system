@@ -12,12 +12,12 @@ spring:
     import: optional:configserver:instead
   datasource:
     driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql://localhost:5432/quotes_db
+    url: jdbc:postgresql://localhost:5433/quotes_db
     username: admin
     password: root
 
   flyway:
-    locations: classpath:db/migration
+    locations: classpath:migration
 
 server:
   port: 8010

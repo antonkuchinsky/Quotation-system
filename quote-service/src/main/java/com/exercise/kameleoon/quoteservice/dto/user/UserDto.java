@@ -3,7 +3,8 @@ package com.exercise.kameleoon.quoteservice.dto.user;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
+
 
 public record UserDto(
         @NotEmpty(message = "Username can't be empty")
@@ -11,6 +12,6 @@ public record UserDto(
         String username,
 
         @NotEmpty(message = "Date can't be empty")
-        LocalDateTime dateCreate
+        LocalDate dateCreate
 ) {
 }

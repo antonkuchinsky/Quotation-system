@@ -9,7 +9,7 @@ services:
     networks:
       - zipkin-network
 
-  postgres:
+  postgres_users:
     image: postgres:15.3
     container_name: users_db
     ports:
@@ -19,7 +19,7 @@ services:
       - POSTGRES_PASSWORD=root
       - POSTGRES_DB=users_db
     volumes:
-      - pgdata:/var/lib/postgresql/data
+      - users_pgdata:/var/lib/postgresql/data
       - ./sql-scripts/created_user_db.sql:/docker-entrypoint-initdb.d/created_user_db.sql
     networks:
       - postgres-network
@@ -29,13 +29,13 @@ services:
     image: postgres:15.3
     container_name: quotes_db
     ports:
-      - "5432:5432"
+      - "5433:5432" # Changed external port to 5433
     environment:
       - POSTGRES_USER=admin
       - POSTGRES_PASSWORD=root
       - POSTGRES_DB=quotes_db
     volumes:
-      - pgdata:/var/lib/postgresql/data
+      - quotes_pgdata:/var/lib/postgresql/data
       - ./sql-scripts/created_quote_db.sql:/docker-entrypoint-initdb.d/created_quote_db.sql
     networks:
       - postgres-network
@@ -48,4 +48,5 @@ networks:
     driver: bridge
 
 volumes:
-  pgdata:
+  users_pgdata:
+  quotes_pgdata:

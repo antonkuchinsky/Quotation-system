@@ -7,7 +7,6 @@ import org.hibernate.validator.constraints.Length;
 import java.util.UUID;
 
 public record QuoteUpdateDto(
-        @NotEmpty(message = "Id can't be empty")
         @NotNull(message="Id can't be null")
         UUID quoteId,
 

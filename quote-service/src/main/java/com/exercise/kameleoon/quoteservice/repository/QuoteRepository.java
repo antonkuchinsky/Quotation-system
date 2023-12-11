@@ -14,5 +14,5 @@ import java.util.UUID;
 public interface QuoteRepository extends JpaRepository<Quote, UUID> {
     Page<Quote> findAll(Pageable pageable);
     Optional<Quote> findById(UUID id);
-    void deleteById(Long id);
+    void deleteById(UUID id);
 }

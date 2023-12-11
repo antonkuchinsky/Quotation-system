@@ -1,4 +1,4 @@
-create table if not exists users
+create table if not exists quotes
 (
     id           uuid primary key,
     content    varchar (500) not null,
