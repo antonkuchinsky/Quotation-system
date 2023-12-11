@@ -1,0 +1,1 @@
+create database votes_db;
