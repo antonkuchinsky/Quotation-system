@@ -25,6 +25,22 @@ services:
       - postgres-network
     restart: always
 
+  postgres_quotes:
+    image: postgres:15.3
+    container_name: quotes_db
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=root
+      - POSTGRES_DB=quotes_db
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+      - ./sql-scripts/created_quote_db.sql:/docker-entrypoint-initdb.d/created_quote_db.sql
+    networks:
+      - postgres-network
+    restart: always
+
 networks:
   zipkin-network:
     driver: bridge
