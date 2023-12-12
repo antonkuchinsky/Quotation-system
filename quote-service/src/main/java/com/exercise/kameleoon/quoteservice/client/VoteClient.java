@@ -15,6 +15,12 @@ public interface VoteClient {
     @GetMapping("/api/v1/votes/{quoteId}")
     List<Vote> getVotesByQuoteId(@PathVariable("quoteId") UUID quoteId);
 
-    @DeleteMapping("api/v1/votes/{quoteId}")
+    @DeleteMapping("/api/v1/votes/{quoteId}")
     void deleteAllByQuoteId(@PathVariable("quoteId") UUID quoteId);
+
+    @GetMapping("/api/v1/votes/top/worst")
+    List<UUID> findTop10WorstQuoteIds();
+
+    @GetMapping("/api/v1/votes/top/best")
+    List<UUID> findTop10BestQuoteIds();
 }

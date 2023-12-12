@@ -21,8 +21,6 @@ public record QuoteDto(
 
         LocalDateTime updateDate,
 
-        @NotEmpty(message = "User can't be empty")
-        @NotNull(message="User can't be null")
         UserDto userDto,
 
         List<Vote> votes

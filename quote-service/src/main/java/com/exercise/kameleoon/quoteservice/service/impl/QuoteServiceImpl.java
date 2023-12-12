@@ -65,7 +65,7 @@ public class QuoteServiceImpl implements QuoteService {
     @Override
     @Transactional
     public void deleteQuote(UUID id) {
-        voteClient.deleteAllByQuoteId(id);
-        quoteRepository.deleteById(id);
+            voteClient.deleteAllByQuoteId(id);
+            quoteRepository.deleteById(id);
     }
 }

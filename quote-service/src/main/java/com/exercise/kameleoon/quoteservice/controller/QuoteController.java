@@ -5,6 +5,7 @@ import com.exercise.kameleoon.quoteservice.dto.QuoteDto;
 import com.exercise.kameleoon.quoteservice.dto.QuoteUpdateDto;
 import com.exercise.kameleoon.quoteservice.model.Quote;
 import com.exercise.kameleoon.quoteservice.service.QuoteService;
+import com.exercise.kameleoon.quoteservice.service.TopQuoteService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -12,6 +13,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.UUID;
 
 @RestController
@@ -19,11 +21,24 @@ import java.util.UUID;
 @RequiredArgsConstructor
 public class QuoteController {
     private final QuoteService quoteService;
+    private final TopQuoteService topQuoteService;
 
     @GetMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
     public QuoteDto getQuoteById(@PathVariable("id") UUID id) {
         return quoteService.getQuoteById(id);
+    }
+
+    @GetMapping("/top/best")
+    @ResponseStatus(HttpStatus.OK)
+    public List<Quote> getTop10BestQuote(){
+        return topQuoteService.getTop10BestQuote();
+    }
+
+    @GetMapping("/top/worst")
+    @ResponseStatus(HttpStatus.OK)
+    public List<Quote> getTop10WorstQuote(){
+        return topQuoteService.getTop10WorstQuote();
     }
 
     @GetMapping("/random")
