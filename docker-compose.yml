@@ -29,7 +29,7 @@ services:
     image: postgres:15.3
     container_name: quotes_db
     ports:
-      - "5433:5432" # Changed external port to 5433
+      - "5433:5432"
     environment:
       - POSTGRES_USER=admin
       - POSTGRES_PASSWORD=root
@@ -37,6 +37,22 @@ services:
     volumes:
       - quotes_pgdata:/var/lib/postgresql/data
       - ./sql-scripts/created_quote_db.sql:/docker-entrypoint-initdb.d/created_quote_db.sql
+    networks:
+      - postgres-network
+    restart: always
+
+  postgres_votes:
+    image: postgres:15.3
+    container_name: votes_db
+    ports:
+      - "5434:5434"
+    environment:
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=root
+      - POSTGRES_DB=votes_db
+    volumes:
+      - votes_pgdata:/var/lib/postgresql/data
+      - ./sql-scripts/created_votes_db.sql:/docker-entrypoint-initdb.d/created_votes_db.sql
     networks:
       - postgres-network
     restart: always
@@ -50,3 +66,4 @@ networks:
 volumes:
   users_pgdata:
   quotes_pgdata:
+  votes_pgdata:
