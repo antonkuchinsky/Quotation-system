@@ -28,4 +28,10 @@ public class VoteController {
     public void voteForQuote(@RequestBody @Valid VoteDto voteDto){
         voteService.voteForQuote(voteDto);
     }
+
+    @DeleteMapping("/{quoteId}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void deleteAllByQuoteId(@PathVariable UUID quoteId){
+        voteService.deleteAllByQuoteId(quoteId);
+    }
 }

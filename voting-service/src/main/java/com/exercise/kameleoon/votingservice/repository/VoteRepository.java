@@ -12,4 +12,5 @@ import java.util.UUID;
 public interface VoteRepository extends JpaRepository<Vote, UUID> {
     Optional<List<Vote>> getAllByQuoteId(UUID quoteId);
     Optional<Vote> findByQuoteIdAndUsername(UUID quoteId, String username);
+    void deleteAllByQuoteId(UUID quoteId);
 }

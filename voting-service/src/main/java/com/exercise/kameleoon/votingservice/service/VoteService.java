@@ -10,4 +10,5 @@ import java.util.UUID;
 public interface VoteService {
     List<Vote> getVotesByQuoteId(UUID id);
     void voteForQuote(VoteDto voteDto);
+    void deleteAllByQuoteId(UUID quoteId);
 }

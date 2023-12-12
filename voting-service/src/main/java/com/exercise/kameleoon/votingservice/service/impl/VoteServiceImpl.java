@@ -8,6 +8,7 @@ import com.exercise.kameleoon.votingservice.repository.VoteRepository;
 import com.exercise.kameleoon.votingservice.service.VoteService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.UUID;
@@ -26,6 +27,7 @@ public class VoteServiceImpl implements VoteService {
     }
 
     @Override
+    @Transactional
     public void voteForQuote(VoteDto voteDto) {
         var vote= voteRepository.findByQuoteIdAndUsername(voteDto.quoteId(),voteDto.username());
         if(vote.isPresent()){
@@ -35,5 +37,11 @@ public class VoteServiceImpl implements VoteService {
         else{
             voteRepository.save(voteMapperDto.apply(voteDto));
         }
+    }
+
+    @Override
+    @Transactional
+    public void deleteAllByQuoteId(UUID quoteId) {
+        voteRepository.deleteAllByQuoteId(quoteId);
     }
 }
