@@ -19,8 +19,6 @@ spring:
   flyway:
     locations: classpath:migration
 
-server:
-  port: 8020
 
 management:
   tracing:
