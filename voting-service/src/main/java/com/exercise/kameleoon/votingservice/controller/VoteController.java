@@ -2,6 +2,7 @@ package com.exercise.kameleoon.votingservice.controller;
 
 import com.exercise.kameleoon.votingservice.dto.VoteDto;
 import com.exercise.kameleoon.votingservice.model.Vote;
+import com.exercise.kameleoon.votingservice.service.QuoteService;
 import com.exercise.kameleoon.votingservice.service.VoteService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -16,8 +17,9 @@ import java.util.UUID;
 @RequiredArgsConstructor
 public class VoteController {
     private final VoteService voteService;
+    private final QuoteService quoteService;
 
-    @GetMapping({"quoteId"})
+    @GetMapping({"/{quoteId}"})
     @ResponseStatus(HttpStatus.OK)
     public List<Vote> getVotesByQuoteId(@PathVariable UUID quoteId){
         return voteService.getVotesByQuoteId(quoteId);
@@ -34,4 +36,17 @@ public class VoteController {
     public void deleteAllByQuoteId(@PathVariable UUID quoteId){
         voteService.deleteAllByQuoteId(quoteId);
     }
+
+    @GetMapping("/top/worst")
+    @ResponseStatus(HttpStatus.OK)
+    public List<UUID> findTop10WorstQuoteIds() {
+        return quoteService.findTop10WorstQuoteIds();
+    }
+    
+    @GetMapping("/top/best")
+    @ResponseStatus(HttpStatus.OK)
+    List<UUID> findTop10BestQuoteIds(){
+        return quoteService.findTop10BestQuoteIds();
+    }
+
 }
