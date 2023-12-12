@@ -1,11 +1,13 @@
 package com.exercise.kameleoon.quoteservice.dto;
 
 import com.exercise.kameleoon.quoteservice.dto.user.UserDto;
+import com.exercise.kameleoon.quoteservice.model.vote.Vote;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import org.hibernate.validator.constraints.Length;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 public record QuoteDto(
         @NotEmpty(message = "Content can't be empty")
@@ -21,6 +23,8 @@ public record QuoteDto(
 
         @NotEmpty(message = "User can't be empty")
         @NotNull(message="User can't be null")
-        UserDto userDto
+        UserDto userDto,
+
+        List<Vote> votes
 ) {
 }

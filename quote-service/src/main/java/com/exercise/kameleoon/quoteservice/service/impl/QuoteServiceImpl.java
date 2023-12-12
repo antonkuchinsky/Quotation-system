@@ -1,5 +1,6 @@
 package com.exercise.kameleoon.quoteservice.service.impl;
 
+import com.exercise.kameleoon.quoteservice.client.VoteClient;
 import com.exercise.kameleoon.quoteservice.dto.QuoteCreateDto;
 import com.exercise.kameleoon.quoteservice.dto.QuoteDto;
 import com.exercise.kameleoon.quoteservice.dto.QuoteUpdateDto;
@@ -25,6 +26,7 @@ public class QuoteServiceImpl implements QuoteService {
     private final QuoteRepository quoteRepository;
     private final QuoteMapperDto quoteMapperDto;
     private final QuoteCreateMapperDto quoteCreateMapperDto;
+    private final VoteClient voteClient;
 
     @Override
     public Page<Quote> getAllQuotes(Pageable pageable) {
@@ -40,7 +42,7 @@ public class QuoteServiceImpl implements QuoteService {
     public QuoteDto getQuoteById(UUID id) {
         return quoteMapperDto.apply(quoteRepository.findById(id).
                 orElseThrow(()->new InvalidDataException("Quote with this id not found",
-                "A uquote with this id wasn't found")));
+                "A quote with this id wasn't found")));
     }
 
     @Override
@@ -63,6 +65,7 @@ public class QuoteServiceImpl implements QuoteService {
     @Override
     @Transactional
     public void deleteQuote(UUID id) {
-    quoteRepository.deleteById(id);
+        voteClient.deleteAllByQuoteId(id);
+        quoteRepository.deleteById(id);
     }
 }
