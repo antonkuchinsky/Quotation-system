@@ -55,7 +55,7 @@ public class QuoteController {
     }
 
     @PostMapping("/create")
-    @ResponseStatus(HttpStatus.OK)
+    @ResponseStatus(HttpStatus.CREATED)
     public Quote addQuote(@RequestBody @Valid QuoteCreateDto quoteCreateDto){
         return quoteService.addQuote(quoteCreateDto);
     }
