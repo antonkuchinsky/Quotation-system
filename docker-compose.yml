@@ -63,12 +63,75 @@ services:
       dockerfile: Dockerfile
     ports:
       - "8761:8761"
+    networks:
+      - postgres-network
+
+  gateway-service:
+    build:
+      context: ./gateway-service
+      dockerfile: Dockerfile
+    ports:
+      - "8222:8222"
+    depends_on:
+      - discovery-service
+      - zipkin
+    networks:
+      - postgres-network
+
+  user-service:
+    build:
+      context: ./user-service
+      dockerfile: Dockerfile
+    depends_on:
+      - postgres_users
+      - gateway-service
+      - discovery-service
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://users_db:5432/users_db
+      - DATABASE_PASSWORD=root
+      - DATABASE_USERNAME=admin
+    networks:
+      - postgres-network
+      - zipkin-network
+
+  quote-service:
+    build:
+      context: ./quote-service
+      dockerfile: Dockerfile
+    depends_on:
+      - postgres_quotes
+      - gateway-service
+      - discovery-service
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://quotes_db:5432/quotes_db
+      - DATABASE_PASSWORD=root
+      - DATABASE_USERNAME=admin
+    networks:
+      - postgres-network
+      - zipkin-network
+
+  voting-service:
+    build:
+      context: ./voting-service
+      dockerfile: Dockerfile
+    depends_on:
+      - postgres_votes
+      - gateway-service
+      - discovery-service
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://votes_db:5432/votes_db
+      - DATABASE_PASSWORD=root
+      - DATABASE_USERNAME=admin
+    networks:
+      - postgres-network
+      - zipkin-network
 
 networks:
   zipkin-network:
     driver: bridge
   postgres-network:
     driver: bridge
+
 
 volumes:
   users_pgdata:
