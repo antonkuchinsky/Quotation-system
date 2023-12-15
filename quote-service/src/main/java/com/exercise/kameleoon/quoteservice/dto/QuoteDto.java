@@ -1,6 +1,7 @@
 package com.exercise.kameleoon.quoteservice.dto;
 
 import com.exercise.kameleoon.quoteservice.dto.user.UserDto;
+import com.exercise.kameleoon.quoteservice.dto.vote.VoteResponseDto;
 import com.exercise.kameleoon.quoteservice.model.vote.Vote;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
@@ -23,6 +24,6 @@ public record QuoteDto(
 
         UserDto userDto,
 
-        List<Vote> votes
+        List<VoteResponseDto> votes
 ) {
 }

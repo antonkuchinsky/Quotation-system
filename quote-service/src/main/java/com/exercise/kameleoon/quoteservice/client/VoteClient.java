@@ -1,5 +1,6 @@
 package com.exercise.kameleoon.quoteservice.client;
 
+import com.exercise.kameleoon.quoteservice.dto.vote.VoteResponseDto;
 import com.exercise.kameleoon.quoteservice.model.vote.Vote;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -13,7 +14,7 @@ import java.util.UUID;
 public interface VoteClient {
 
     @GetMapping("/api/v1/votes/{quoteId}")
-    List<Vote> getVotesByQuoteId(@PathVariable("quoteId") UUID quoteId);
+    List<VoteResponseDto> getVotesByQuoteId(@PathVariable("quoteId") UUID quoteId);
 
     @DeleteMapping("/api/v1/votes/{quoteId}")
     void deleteAllByQuoteId(@PathVariable("quoteId") UUID quoteId);

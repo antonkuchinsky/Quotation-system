@@ -4,6 +4,7 @@ import com.exercise.kameleoon.quoteservice.client.UserClient;
 import com.exercise.kameleoon.quoteservice.client.VoteClient;
 import com.exercise.kameleoon.quoteservice.dto.QuoteDto;
 import com.exercise.kameleoon.quoteservice.dto.user.UserDto;
+import com.exercise.kameleoon.quoteservice.dto.vote.VoteResponseDto;
 import com.exercise.kameleoon.quoteservice.model.Quote;
 import com.exercise.kameleoon.quoteservice.model.vote.Vote;
 import lombok.RequiredArgsConstructor;
@@ -21,7 +22,7 @@ public class QuoteMapperDto implements Function<Quote, QuoteDto> {
     @Override
     public QuoteDto apply(Quote quote) {
         UserDto userDto;
-        List<Vote> votes;
+        List<VoteResponseDto> votes;
 
         try {
             userDto = userClient.getUserByUsername(quote.getUsername()).get();

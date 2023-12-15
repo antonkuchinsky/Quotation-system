@@ -1,6 +1,7 @@
 package com.exercise.kameleoon.votingservice.controller;
 
 import com.exercise.kameleoon.votingservice.dto.VoteDto;
+import com.exercise.kameleoon.votingservice.dto.VoteResponseDto;
 import com.exercise.kameleoon.votingservice.model.Vote;
 import com.exercise.kameleoon.votingservice.service.QuoteService;
 import com.exercise.kameleoon.votingservice.service.VoteService;
@@ -21,7 +22,7 @@ public class VoteController {
 
     @GetMapping({"/{quoteId}"})
     @ResponseStatus(HttpStatus.OK)
-    public List<Vote> getVotesByQuoteId(@PathVariable UUID quoteId){
+    public List<VoteResponseDto> getVotesByQuoteId(@PathVariable UUID quoteId){
         return voteService.getVotesByQuoteId(quoteId);
     }
 

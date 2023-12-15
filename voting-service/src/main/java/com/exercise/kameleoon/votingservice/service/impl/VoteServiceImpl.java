@@ -1,8 +1,10 @@
 package com.exercise.kameleoon.votingservice.service.impl;
 
 import com.exercise.kameleoon.votingservice.dto.VoteDto;
+import com.exercise.kameleoon.votingservice.dto.VoteResponseDto;
 import com.exercise.kameleoon.votingservice.exception.InvalidDataException;
 import com.exercise.kameleoon.votingservice.mapper.VoteMapperDto;
+import com.exercise.kameleoon.votingservice.mapper.VoteResponseMapperDto;
 import com.exercise.kameleoon.votingservice.model.Vote;
 import com.exercise.kameleoon.votingservice.repository.VoteRepository;
 import com.exercise.kameleoon.votingservice.service.VoteService;
@@ -18,12 +20,15 @@ import java.util.UUID;
 public class VoteServiceImpl implements VoteService {
     private final VoteRepository voteRepository;
     private final VoteMapperDto voteMapperDto;
+    private final VoteResponseMapperDto voteResponseMapperDto;
 
     @Override
-    public List<Vote> getVotesByQuoteId(UUID id) {
-        return voteRepository.getAllByQuoteId(id)
-                .orElseThrow(()->new InvalidDataException("Votes with this quote id not found",
-                "Votes with this quote id wasn't found"));
+    public List<VoteResponseDto> getVotesByQuoteId(UUID id) {
+        List<Vote> votes = voteRepository.getAllByQuoteId(id)
+                .orElseThrow(() -> new InvalidDataException("Votes with this quote id not found",
+                        "Votes with this quote id wasn't found"));
+
+        return voteResponseMapperDto.apply(votes);
     }
 
     @Override
