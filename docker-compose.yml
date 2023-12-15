@@ -57,6 +57,13 @@ services:
       - postgres-network
     restart: always
 
+  discovery-service:
+    build:
+      context: ./discovery-service
+      dockerfile: Dockerfile
+    ports:
+      - "8761:8761"
+
 networks:
   zipkin-network:
     driver: bridge
