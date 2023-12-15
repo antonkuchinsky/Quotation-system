@@ -7,5 +7,5 @@ RUN ./gradlew build
 
 FROM openjdk:17-jdk-slim
 WORKDIR /app
-COPY --from=build /app/build/libs/discovery-service-0.0.1-SNAPSHOT.jar /app/discovery-service-0.0.1-SNAPSHOT.jar
-CMD ["java", "-jar", "discovery-service-0.0.1-SNAPSHOT.jar"]
+COPY --from=build /app/build/libs/gateway-service-0.0.1-SNAPSHOT.jar /app/gateway-service-0.0.1-SNAPSHOT.jar
+CMD ["java", "-jar", "gateway-service-0.0.1-SNAPSHOT.jar"]
