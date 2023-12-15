@@ -26,7 +26,7 @@ public class VoteController {
     }
 
     @PostMapping
-    @ResponseStatus(HttpStatus.OK)
+    @ResponseStatus(HttpStatus.CREATED)
     public void voteForQuote(@RequestBody @Valid VoteDto voteDto){
         voteService.voteForQuote(voteDto);
     }
