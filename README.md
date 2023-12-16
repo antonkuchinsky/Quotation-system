@@ -23,10 +23,10 @@ You can also deploy locally by navigating to the project directory and executing
 docker-compose up --build
 ```
 ### Application architecture
->![Image alt](https://github.com/antonkuchinsky/Quotation-system/schema.png)
+>![Image alt](https://github.com/antonkuchinsky/Quotation-system/raw/master/schema.png)
 
 ### Discovery Service
->![Image alt](https://github.com/antonkuchinsky/Quotation-system/discovery-image.png)
+>![Image alt](https://github.com/antonkuchinsky/Quotation-system/raw/master/discovery-image.png)
 This service is implemented for service discovery.
 
 ### Gateway Service
