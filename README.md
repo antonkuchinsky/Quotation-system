@@ -17,7 +17,7 @@ docker push antonkuchinsky/quotation_system:user-service
 docker push antonkuchinsky/quotation_system:quote-service
 docker push antonkuchinsky/quotation_system:voting-service
 ```
-###Local Deployment using Docker Compose
+### Local Deployment using Docker Compose
 You can also deploy locally by navigating to the project directory and executing the following command in the terminal:
 ```bash
 docker-compose up --build
